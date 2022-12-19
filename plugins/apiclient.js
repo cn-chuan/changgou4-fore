@@ -65,6 +65,9 @@ const request = {
   getDelivery(){
     return axios.get(`/order-service/delivery`)
   },
+  updateDelivery(did,tid){
+    return axios.post(`/order-service/delivery/${did}/${tid}`)
+  }
 
 }
 

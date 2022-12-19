@@ -3,7 +3,7 @@
     <!-- 顶部导航 start -->
     <TopNav></TopNav>
     <!-- 顶部导航 end -->
-    
+
     <div style="clear:both;"></div>
 
     <!-- 头部 start -->
@@ -71,12 +71,12 @@
               </ul>
             </div>
           </div>
-          
+
           <div style="clear:both; height:1px;"></div>
         </div>
         <!-- 分类列表 end -->
-          
-        <div style="clear:both;"></div>	
+
+        <div style="clear:both;"></div>
 
         <!-- 新品推荐 start -->
         <div class="newgoods leftbar mt10">
@@ -140,7 +140,7 @@
         <!-- 最近浏览 end -->
       </div>
       <!-- 左侧内容 end -->
-    
+
       <!-- 列表内容 start -->
       <div class="list_bd fl ml10 mt10">
         <!-- 热卖、促销 start -->
@@ -194,9 +194,9 @@
           <!-- 促销活动 end -->
         </div>
         <!-- 热卖、促销 end -->
-        
+
         <div style="clear:both;"></div>
-        
+
         <!-- 商品筛选 start -->
         <div class="filter mt10">
           <h2><a href="">重置筛选条件</a> <strong>商品筛选</strong></h2>
@@ -252,7 +252,7 @@
           </div>
         </div>
         <!-- 商品筛选 end -->
-        
+
         <div style="clear:both;"></div>
 
         <!-- 排序 start -->
@@ -264,9 +264,9 @@
               </dd>
             <dd :class="{'cur': searchMap.sortBy == 'jg'}">
               <a href="" @click.prevent="sortSearch('jg')" style="text-decoration: none;">
-                价格 
-                <span v-if="searchMap.sortBy == 'jg' && searchMap.sortWay == 'asc'">↑</span> 
-                <span v-if="searchMap.sortBy == 'jg' && searchMap.sortWay == 'desc'">↓</span> 
+                价格
+                <span v-if="searchMap.sortBy == 'jg' && searchMap.sortWay == 'asc'">↑</span>
+                <span v-if="searchMap.sortBy == 'jg' && searchMap.sortWay == 'desc'">↓</span>
               </a>
               </dd>
             <dd :class="{'cur': searchMap.sortBy == 'pl'}">
@@ -277,14 +277,14 @@
             </dd>
             <dt>价格：</dt>
             <dt>
-              <input type="text" style="width: 80px" v-model="searchMap.minPrice"> - 
+              <input type="text" style="width: 80px" v-model="searchMap.minPrice"> -
               <input type="text" style="width: 80px" v-model="searchMap.maxPrice">
               <input type="button" value="搜索" @click.prevent="searchList">
             </dt>
           </dl>
         </div>
         <!-- 排序 end -->
-        
+
         <div style="clear:both;"></div>
 
         <!-- 商品列表 start-->
@@ -304,8 +304,8 @@
         <!-- 商品列表 end-->
 
         <!-- 分页信息 start -->
-        <Pagination :total="searchResult.total" 
-        :page_size="searchMap.size" 
+        <Pagination :total="searchResult.total"
+        :page_size="searchMap.size"
         @page_changed="pageSearch"></Pagination>
         <!-- <div class="page mt20">
           <a href="">首页</a>
@@ -316,7 +316,7 @@
           <a href="">4</a>
           <a href="">5</a>
           <a href="">下一页</a>
-          <a href="">尾页</a>&nbsp;&nbsp; 
+          <a href="">尾页</a>&nbsp;&nbsp;
           <span>
             <em>共8页&nbsp;&nbsp;到第 <input type="text" class="page_num" value="3"/> 页</em>
             <a class="skipsearch" href="javascript:;">确定</a>
@@ -417,7 +417,7 @@ export default {
       this.specList = baseResult.data
       //规格选项回显方式2： 处理数据，设置每一个spec的selectId的默认值
       // this.specList.forEach(spec => this.$set(spec,'selectId', '') )
-      
+
 
     },
     specSearch(spec, specOption) {
