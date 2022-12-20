@@ -124,7 +124,7 @@
               <tbody>
               <tr class="cur" v-for="(delivery,index) in deliveryList" :key="index">
                 <td>
-                  <input type="radio" id="id" name="delivery.id" :value="delivery.id"  v-model="delivery.id" @change="changeDelivery(delivery.id)"/>{{delivery.name}}
+                  <input type="radio" id="id" name="deliveryUserDid" :value="delivery.id"  v-model="deliveryUser.did" @change="changeDelivery(delivery.id)"/>{{delivery.name}}
                       <select v-if="delivery.list!=null" v-model="deliveryUser.tid" @change="changeDeliveryTime(deliveryUser.tid,delivery.id)">
                         <!--@change="changeDeliveryTime(deliveryTime.id)"-->
                         <option v-for="(deliveryTime,index) in delivery.list" :key="index" :selected="deliveryTime.id ==deliveryUser.tid" :value=deliveryTime.id >{{deliveryTime.name}}</option>
