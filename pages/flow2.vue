@@ -124,7 +124,10 @@
               <tbody>
               <tr class="cur" v-for="(delivery,index) in deliveryList" :key="index">
                 <td>
-                  <input type="radio" id="id" name="deliveryUserDid" :value="delivery.id"  v-model="deliveryUser.did" @change="changeDelivery(delivery.id)"/>{{delivery.name}}
+                  {{deliveryUser.did}}
+                  {{deliveryUser.tid}}
+
+                  <input type="radio" name="did" :value="delivery.id"  v-model="deliveryUser.did" @change="changeDelivery(delivery.id)"/>{{delivery.name}}
                       <select v-if="delivery.list!=null" v-model="deliveryUser.tid" @change="changeDeliveryTime(deliveryUser.tid,delivery.id)">
                         <!--@change="changeDeliveryTime(deliveryTime.id)"-->
                         <option v-for="(deliveryTime,index) in delivery.list" :key="index" :selected="deliveryTime.id ==deliveryUser.tid" :value=deliveryTime.id >{{deliveryTime.name}}</option>
@@ -337,8 +340,9 @@ export default {
       this.deliveryList=baseResult.data;
       let newDeliveryList= this.deliveryList.filter(delivery => delivery.isdefault)
       if (newDeliveryList.length==1){
+        debugger
         this.defaultDelivery=newDeliveryList[0]
-        this.deliveryUser.tid=newDeliveryList[0].id;
+        this.deliveryUser.did=newDeliveryList[0].id;
       }
       if (this.defaultDelivery.list==null){
         this.defaultDeliveryTime={}
@@ -348,7 +352,7 @@ export default {
         let newDeliveryTimeList=this.defaultDelivery.list.filter(deliveryTime => deliveryTime.isdefault)
         if (newDeliveryTimeList.length==1){
           this.defaultDeliveryTime=newDeliveryTimeList[0]
-          this.deliveryUser.did=newDeliveryTimeList[0].id;
+          this.deliveryUser.tid=newDeliveryTimeList[0].id;
         }
       }
     },
@@ -393,6 +397,12 @@ export default {
     },
     changeDelivery(did){
       this.deliveryUser.did=did;
+      let newDeliveryList= this.deliveryList.filter(delivery => delivery.id==did);
+      if (newDeliveryList.length == 1){
+        if(newDeliveryList[0].list==null){
+          this.deliveryUser.tid=1;
+        }
+      }
     },
     changeDeliveryTime(tid,did){
       //怎么判断出tid和did有无关系
@@ -413,15 +423,14 @@ export default {
     },
     async updateDelivery(){
 
-      let { data : baseResult } =await this.$request.updateDelivery(this.deliveryUser.did,this.deliveryUser.tid);
+      let { data : baseResult } =await this.$request.updateDelivery(this.deliveryUser.tid,this.deliveryUser.did);
+      // await this.getDelivery()
       this.$router.go(0)
 
 
     }
   },
   mounted() {
-    this.deliveryUser.did=this.defaultDelivery.id
-    this.deliveryUser.tid=this.defaultDeliveryTime.id
     // 查询所有的地址
     this.getAddress()
     this.getDelivery()
